@@ -1,0 +1,56 @@
+<html>
+
+<body>
+     
+    <div>Kirim data kelembaban setiap <span id="toCount">1</span> menit</div>
+    <div>Time left = <span id="timer"></span></div>
+    <div>Data kelembaban ke <span id="siram">0</span></div>
+
+    <script>
+        // ambil nilai didalam tag span dengan id toCount
+        // nilai di dalam id toCount setel dinamis berdasarkan data dari database
+        var timeToCount = document.getElementById('toCount').textContent;
+        // ambil nilai didalam tag span dengan id siram
+        var siram = document.getElementById('siram').textContent;
+
+        var timer;
+        function startTimer(duration, display) {
+            
+            timer = duration;
+            var minutes, seconds;
+
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                // fotmat waktu yang ditampilkan
+                display.textContent = minutes + ":" + seconds;
+
+                // jika durasi sudah habis
+                if (--timer < 0) {
+                    // lakukan sesuatu disini
+                    // gunakan ajax untuk mengubah data secara real time
+                    alert('panggil fungsi untuk update data disini!!');
+
+                    // -------------------- //
+                    siram = document.getElementById('siram').innerHTML= parseInt(siram) + 1;
+                    timer = duration; // reset durasi
+                }
+            }, 1000);
+        }
+
+        // ketika dokumen di load 
+        window.onload = function () {
+            durasi = 10 * parseInt(timeToCount), // 60 detik dikali menit
+            display = document.querySelector('#timer');
+            // mulai hitung
+            startTimer(durasi, display);
+        };
+
+  </script>
+</body>
+
+</html>
