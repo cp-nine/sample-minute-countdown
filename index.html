@@ -3,7 +3,9 @@
 <body>
      
     <div>Kirim data kelembaban setiap <span id="toCount">1</span> menit</div>
-    <div>Time left = <span id="timer"></span></div>
+    <hr>
+    <div>Update dalam <span id="timer"></span> menit</div>
+    <hr>
     <div>Data kelembaban ke <span id="siram">0</span></div>
 
     <script>
@@ -33,8 +35,7 @@
                 if (--timer < 0) {
                     // lakukan sesuatu disini
                     // gunakan ajax untuk mengubah data secara real time
-                    alert('panggil fungsi untuk update data disini!!');
-
+                    updateData();
                     // -------------------- //
                     siram = document.getElementById('siram').innerHTML= parseInt(siram) + 1;
                     timer = duration; // reset durasi
@@ -42,9 +43,13 @@
             }, 1000);
         }
 
+        function updateData() {
+            alert('Tulis ajax untuk update data disini!!');
+        }
+
         // ketika dokumen di load 
         window.onload = function () {
-            durasi = 10 * parseInt(timeToCount), // 60 detik dikali menit
+            durasi = 60 * parseInt(timeToCount), // 60 detik dikali menit
             display = document.querySelector('#timer');
             // mulai hitung
             startTimer(durasi, display);
